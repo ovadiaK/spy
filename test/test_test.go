@@ -15,7 +15,6 @@ func TestSpy(t *testing.T) {
 			res := Spy.Get("hello")
 			gomega.Expect(res).To(gomega.Equal("world"))
 			gomega.Expect(Spy.GetFunc.WasCalled()).To(gomega.BeTrue())
-			gomega.Expect(Spy.SetFunc.WasCalled()).To(gomega.BeTrue())
 		})
 		ginkgo.It("spy reports functions not called", func() {
 			Spy := spy.New()

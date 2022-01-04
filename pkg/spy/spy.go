@@ -5,12 +5,12 @@ import "github.com/ovadiaK/spy/internal/app"
 type Spy struct {
 	GetFunc metric
 	SetFunc metric
-	app     app.Api
+	app.Api
 }
 
 func New() Spy {
 	application := app.New()
-	return Spy{app: &application}
+	return Spy{Api: &application}
 }
 
 type metric struct {
@@ -27,12 +27,13 @@ func (m *metric) call() {
 	m.called++
 }
 
-func (s *Spy) Set(key, value string) {
-	s.SetFunc.call()
-	s.app.Set(key, value)
-}
+//
+//func (s *Spy) Set(key, value string) {
+//	s.SetFunc.call()
+//	s.app.Set(key, value)
+//}
 
 func (s *Spy) Get(key string) string {
 	s.GetFunc.call()
-	return s.app.Get(key)
+	return s.Api.Get(key)
 }
